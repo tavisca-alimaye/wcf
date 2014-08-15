@@ -14,10 +14,13 @@ namespace EmployeeManager
     {
 
         [OperationContract]
-        void AddEmployee();
+        void AddEmployee(int id,string name);
 
         [OperationContract]
         void AddRemark(Employee e);
+
+        [OperationContract]
+        Employee GetEmployee(int empId);
         // TODO: Add your service operations here
     }
 
@@ -27,15 +30,25 @@ namespace EmployeeManager
     public class Employee
     {
         [DataMember]
-        public string EmployeeID { get; set; }
+        public int EmployeeID { get; set; }
 
         [DataMember]
         public string EmployeeName { get; set; }
 
         [DataMember]
         public Remarks remark;
-        
-        
+
+
+
+        internal void AddEmp(int id,string name)
+        {
+            /*Console.WriteLine("EmployeeID :");
+            EmployeeID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Employee Name :");
+            EmployeeName = Console.ReadLine();*/
+            EmployeeID = id;
+            EmployeeName = name;
+        }
     }
 
     public class Remarks

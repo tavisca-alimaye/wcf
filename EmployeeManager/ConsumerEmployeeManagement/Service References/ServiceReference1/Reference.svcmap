@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8f4a5bc9-920f-4ae3-98d0-d97a4918859d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49598/EmployeeManagement.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EmployeeManagement.xsd" MetadataType="Schema" ID="c9e89d29-0558-4966-aa29-85beccee8089" SourceId="1" SourceUrl="http://localhost:49598/EmployeeManagement.svc?xsd=xsd1" />
+    <MetadataFile FileName="EmployeeManagement.disco" MetadataType="Disco" ID="d4e1a284-ff1c-43d3-9a63-b8f245eb8a39" SourceId="1" SourceUrl="http://localhost:49598/EmployeeManagement.svc?disco" />
+    <MetadataFile FileName="EmployeeManagement1.xsd" MetadataType="Schema" ID="6080718a-a7de-4633-abca-d7c295c300b1" SourceId="1" SourceUrl="http://localhost:49598/EmployeeManagement.svc?xsd=xsd2" />
+    <MetadataFile FileName="EmployeeManagement.wsdl" MetadataType="Wsdl" ID="bdb39f52-3ccb-43ea-8bc3-bd0f91bf3eeb" SourceId="1" SourceUrl="http://localhost:49598/EmployeeManagement.svc?wsdl" />
+    <MetadataFile FileName="EmployeeManagement2.xsd" MetadataType="Schema" ID="0b796f9a-5c83-449e-876b-5e8334f431aa" SourceId="1" SourceUrl="http://localhost:49598/EmployeeManagement.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

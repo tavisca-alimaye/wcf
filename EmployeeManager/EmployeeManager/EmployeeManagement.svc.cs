@@ -12,12 +12,20 @@ namespace EmployeeManager
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class EmployeeManagement : ICreateEmployee
     {        
-        void ICreateEmployee.AddEmployee()
+        void ICreateEmployee.AddEmployee(int id,string name)
         {
-            
+            Console.WriteLine("In function add employee");
+            Employee emp = new Employee();
+            emp.AddEmp(id,name);
         }
 
         void ICreateEmployee.AddRemark(Employee e)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        Employee ICreateEmployee.GetEmployee(int empId)
         {
             throw new NotImplementedException();
         }
