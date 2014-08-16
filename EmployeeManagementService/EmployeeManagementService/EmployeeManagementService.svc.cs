@@ -5,17 +5,26 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.ServiceModel.Channels;
+
 
 namespace EmployeeManagementService
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
     public class EmployeeManager : ICreateEmployee,IGetDetails
     {
         public List<Employee> empDatabase = new List<Employee>();
 
         void ICreateEmployee.AddEmployee(Employee emp)
         {
-            empDatabase.Add(emp);
+            if (empDatabase.Exists(e => e.EmpId == emp.EmpId))
+            {
+                throw FaultException.CreateFault(
+                  MessageFault.CreateFault(
+                      new FaultCode("101"), "Employee Id is duplicate...Employee with given Id is already present"));
+            }
+            else
+                empDatabase.Add(emp);
         }
 
         void ICreateEmployee.AddRemark(int id, string comments)
