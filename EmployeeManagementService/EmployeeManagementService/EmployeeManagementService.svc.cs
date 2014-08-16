@@ -25,7 +25,8 @@ namespace EmployeeManagementService
             {
                 if (employee.remark == null)
                 {
-                    employee.remark.RemarkDateTimeStamp = DateTime.Now;
+                    employee.remark = new Remarks();
+                    //employee.remark.RemarkDateTimeStamp = DateTime.Now;
                     employee.remark.RemarkDescription = comments;
                 }
                 else

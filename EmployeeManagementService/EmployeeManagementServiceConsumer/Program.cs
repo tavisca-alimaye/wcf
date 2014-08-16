@@ -14,7 +14,7 @@ namespace EmployeeManagementServiceConsumer
             CreateEmployeeClient clientForCreation = new CreateEmployeeClient();
             GetDetailsClient clientForRetrieval = new GetDetailsClient();
 
-            /*for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Employee emp = new Employee();
                 Console.WriteLine("EmployeeID : ");
@@ -30,7 +30,7 @@ namespace EmployeeManagementServiceConsumer
             var comments = Console.ReadLine();
             clientForCreation.AddRemark(id, comments);
             clientForCreation.Close();
-            */
+            
             var employeeWithGivenId = clientForRetrieval.SearchById(1);
             var employeeWithGivenName = clientForRetrieval.SearchByName("Dhruv");
             clientForRetrieval.Close();
