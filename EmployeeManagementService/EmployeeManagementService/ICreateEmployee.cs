@@ -33,6 +33,13 @@ namespace EmployeeManagementService
 
         [DataMember]
         public Remarks remark;
+
+        public Employee()
+        {
+            EmpId = -1;
+            EmpName = null;
+            remark = new Remarks();
+        }
     }
 
     public class Remarks
