@@ -52,7 +52,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\EmployeeManagementServiceReference\EmployeeManagementService.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -61,6 +63,9 @@
     </None>
     <None Include="Service References\EmployeeManagementServiceReference\EmployeeManagementService2.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EmployeeManagementServiceReference\EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\EmployeeManagementServiceReference\EmployeeManager.wsdl" />
   </ItemGroup>

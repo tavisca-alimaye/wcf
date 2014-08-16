@@ -211,4 +211,79 @@ namespace EmployeeManagementServiceConsumer.EmployeeManagementServiceReference {
             return base.Channel.AddRemarkAsync(id, comments);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EmployeeManagementServiceReference.IGetDetails")]
+    public interface IGetDetails {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/GetAllEmployees", ReplyAction="http://tempuri.org/IGetDetails/GetAllEmployeesResponse")]
+        EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee[] GetAllEmployees();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/GetAllEmployees", ReplyAction="http://tempuri.org/IGetDetails/GetAllEmployeesResponse")]
+        System.Threading.Tasks.Task<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee[]> GetAllEmployeesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchByName", ReplyAction="http://tempuri.org/IGetDetails/SearchByNameResponse")]
+        EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee SearchByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchByName", ReplyAction="http://tempuri.org/IGetDetails/SearchByNameResponse")]
+        System.Threading.Tasks.Task<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee> SearchByNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchById", ReplyAction="http://tempuri.org/IGetDetails/SearchByIdResponse")]
+        EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee SearchById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchById", ReplyAction="http://tempuri.org/IGetDetails/SearchByIdResponse")]
+        System.Threading.Tasks.Task<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee> SearchByIdAsync(int id);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGetDetailsChannel : EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.IGetDetails, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetDetailsClient : System.ServiceModel.ClientBase<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.IGetDetails>, EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.IGetDetails {
+        
+        public GetDetailsClient() {
+        }
+        
+        public GetDetailsClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public GetDetailsClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GetDetailsClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GetDetailsClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee[] GetAllEmployees() {
+            return base.Channel.GetAllEmployees();
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee[]> GetAllEmployeesAsync() {
+            return base.Channel.GetAllEmployeesAsync();
+        }
+        
+        public EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee SearchByName(string name) {
+            return base.Channel.SearchByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee> SearchByNameAsync(string name) {
+            return base.Channel.SearchByNameAsync(name);
+        }
+        
+        public EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee SearchById(int id) {
+            return base.Channel.SearchById(id);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeManagementServiceConsumer.EmployeeManagementServiceReference.Employee> SearchByIdAsync(int id) {
+            return base.Channel.SearchByIdAsync(id);
+        }
+    }
 }

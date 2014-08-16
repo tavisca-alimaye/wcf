@@ -15,4 +15,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Remarks" nillable="true" type="tns:Remarks" />
+  <xs:complexType name="ArrayOfEmployee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Employee" nillable="true" type="tns:Employee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
 </xs:schema>

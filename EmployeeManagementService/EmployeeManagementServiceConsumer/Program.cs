@@ -11,24 +11,29 @@ namespace EmployeeManagementServiceConsumer
     {
         static void Main(string[] args)
         {
-            CreateEmployeeClient client = new CreateEmployeeClient();
+            CreateEmployeeClient clientForCreation = new CreateEmployeeClient();
+            GetDetailsClient clientForRetrieval = new GetDetailsClient();
 
-            for (int i = 0; i < 3; i++)
+            /*for (int i = 0; i < 3; i++)
             {
                 Employee emp = new Employee();
                 Console.WriteLine("EmployeeID : ");
                 emp.EmpId = int.Parse(Console.ReadLine());
                 Console.WriteLine("Employee Name : ");
                 emp.EmpName = Console.ReadLine();
-                client.AddEmployee(emp); 
+                clientForCreation.AddEmployee(emp); 
             }
 
             Console.WriteLine("Give Employee Id for adding a remark -->");
             var id = int.Parse(Console.ReadLine());
             Console.WriteLine("Add remark");
             var comments = Console.ReadLine();
-            client.AddRemark(id, comments);
-            client.Close();
+            clientForCreation.AddRemark(id, comments);
+            clientForCreation.Close();
+            */
+            var employeeWithGivenId = clientForRetrieval.SearchById(1);
+            var employeeWithGivenName = clientForRetrieval.SearchByName("Dhruv");
+            clientForRetrieval.Close();
         }
     }
 }

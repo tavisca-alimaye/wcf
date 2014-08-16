@@ -9,7 +9,7 @@ using System.Text;
 namespace EmployeeManagementService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class EmployeeManager : ICreateEmployee
+    public class EmployeeManager : ICreateEmployee,IGetDetails
     {
         public List<Employee> empDatabase = new List<Employee>();
 
@@ -38,6 +38,21 @@ namespace EmployeeManagementService
             {
                 throw new Exception("No employee with given ID");
             }
+        }
+
+        List<Employee> IGetDetails.GetAllEmployees()
+        {
+            return empDatabase;
+        }
+
+        Employee IGetDetails.GetSelectedEmployee(string name)
+        {
+            return (empDatabase.Find(e => e.EmpName.Equals(name)));
+        }
+
+        Employee IGetDetails.GetSelectedEmployee(int id)
+        {
+            return (empDatabase.Find(e => e.EmpId.Equals(id)));
         }
     }
 }
