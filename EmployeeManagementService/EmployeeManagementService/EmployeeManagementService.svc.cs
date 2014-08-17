@@ -5,8 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.ServiceModel.Description;
 using System.ServiceModel.Channels;
-
 
 namespace EmployeeManagementService
 {
@@ -17,13 +17,13 @@ namespace EmployeeManagementService
 
         void ICreateEmployee.AddEmployee(Employee emp)
         {
-            if (empDatabase.Exists(e => e.EmpId == emp.EmpId))
+            /*if (empDatabase.Exists(e => e.EmpId == emp.EmpId))
             {
                 throw FaultException.CreateFault(
                   MessageFault.CreateFault(
                       new FaultCode("101"), "Employee Id is duplicate...Employee with given Id is already present"));
             }
-            else
+            else*/
                 empDatabase.Add(emp);
         }
 
