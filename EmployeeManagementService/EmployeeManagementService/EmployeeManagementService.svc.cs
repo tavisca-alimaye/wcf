@@ -60,7 +60,7 @@ namespace EmployeeManagementService
             }
             else
             {
-                throw new Exception("No employee with given ID");
+                throw new FaultException(new FaultReason("Employee with given Id does not exist!!!"), new FaultCode("NoEmployeeForAddingRemark"));
             }
         }
 

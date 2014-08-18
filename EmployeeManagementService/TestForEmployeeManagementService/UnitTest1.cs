@@ -42,7 +42,6 @@ namespace TestForEmployeeManagementService
             }
             catch (FaultException f)
             {
-                //Assert.IsTrue(Assert.AreEqual(f.Code.Name, "Duplicate Id") && Assert.AreEqual(f.Reason, "Given Id already exists!!!"));
                 Assert.AreEqual(f.Code.Name, "Duplicate Id");
             }
         }
@@ -60,6 +59,19 @@ namespace TestForEmployeeManagementService
             catch (FaultException f)
             {
                 Assert.AreEqual(f.Code.Name,"ArgumentNullFault");
+            }
+        }
+
+        [TestMethod]
+        public void AddRemarkToNonExistentEmployeeShouldThrowException()
+        {
+            try
+            {
+                clientForCreation.AddRemark(50, "asdasd");
+            }
+            catch (FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name, "NoEmployeeForAddingRemark");
             }
         }
                 
