@@ -74,6 +74,19 @@ namespace TestForEmployeeManagementService
                 Assert.AreEqual(f.Code.Name, "NoEmployeeForAddingRemark");
             }
         }
+
+        [TestMethod]
+        public void RemarkShouldNotBeNullException()
+        {
+            try
+            {
+                clientForCreation.AddRemark(1, null);
+            }
+            catch (FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name, "RemarkIsNull");
+            }
+        }
                 
     }
 }

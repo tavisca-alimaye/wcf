@@ -44,23 +44,32 @@ namespace EmployeeManagementService
         void ICreateEmployee.AddRemark(int id, string comments)
         {
             Employee employee = empDatabase.Find(e => e.EmpId.Equals(id));
-            if (employee != null)
+            try
             {
-                if (employee.remark == null)
+                if (comments == null || comments == " ")
+                    throw new ArgumentNullException();
+                if (employee != null)
                 {
-                    employee.remark = new Remarks();
-                    //employee.remark.RemarkDateTimeStamp = DateTime.Now;
-                    employee.remark.RemarkDescription = comments;
+                    if (employee.remark == null)
+                    {
+                        employee.remark = new Remarks();
+                        //employee.remark.RemarkDateTimeStamp = DateTime.Now;
+                        employee.remark.RemarkDescription = comments;
+                    }
+                    else
+                    {
+                        employee.remark.RemarkDateTimeStamp = DateTime.Now;
+                        employee.remark.RemarkDescription += comments;
+                    }
                 }
                 else
                 {
-                    employee.remark.RemarkDateTimeStamp = DateTime.Now;
-                    employee.remark.RemarkDescription += comments;
+                    throw new FaultException(new FaultReason("Employee with given Id does not exist!!!"), new FaultCode("NoEmployeeForAddingRemark"));
                 }
             }
-            else
+            catch (ArgumentNullException)
             {
-                throw new FaultException(new FaultReason("Employee with given Id does not exist!!!"), new FaultCode("NoEmployeeForAddingRemark"));
+                throw new FaultException(new FaultReason("Remark cannot be Null or blank!!!"), new FaultCode("RemarkIsNull"));
             }
         }
 
