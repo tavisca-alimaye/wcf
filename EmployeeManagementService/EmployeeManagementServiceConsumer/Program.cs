@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel.Channels;
+using System.ServiceModel;
 
 namespace EmployeeManagementServiceConsumer
 {
@@ -25,17 +27,26 @@ namespace EmployeeManagementServiceConsumer
                     {
                         do
                         {
-                            Console.WriteLine("Enter Employee ID:");
-                            emp.EmpId = int.Parse(Console.ReadLine());
-                            if (IsEmployeeIdUnique(clientForRetrieval, emp.EmpId))
+
+                            try
                             {
+                                Console.WriteLine("Enter Employee ID:");
+                                emp.EmpId = int.Parse(Console.ReadLine());
+                                //if (IsEmployeeIdUnique(clientForRetrieval, emp.EmpId))
+                                //{
                                 Console.WriteLine("Enter Employee Name:");
                                 emp.EmpName = Console.ReadLine();
                                 clientForCreation.AddEmployee(emp);
-                                break;
                             }
-                            else
-                                Console.WriteLine("Employee Id must be unique....Employee with given Id already exists");
+                            catch (FaultException f)
+                            {
+                                if(f.Code.Name == "Duplicate Id")
+                                    Console.WriteLine(f.Reason);
+                            }
+                                break;
+                            //}
+                            //else
+                              //  Console.WriteLine("Employee Id must be unique....Employee with given Id already exists");
                         } while (true);
                         break;
                     }
@@ -90,13 +101,13 @@ namespace EmployeeManagementServiceConsumer
 
         private static void DisplayEmployeeDetails(Employee emp)
         {
-            Console.WriteLine("Employee ID : {0}", emp.EmpId);
+            Console.WriteLine("\nEmployee ID : {0}", emp.EmpId);
             Console.WriteLine("Employee Name : {0}", emp.EmpName);
             if (emp.remark != null)
             {
-                Console.WriteLine("Remarks for employee");
+                Console.WriteLine("\nRemarks for employee");
                 Console.WriteLine("Remark Time : {0}", emp.remark.RemarkDateTimeStamp);
-                Console.WriteLine("Remarks:\n {0}", emp.remark.RemarkDescription);
+                Console.WriteLine("Remarks:\n {0}\n", emp.remark.RemarkDescription);
             }
         }
 
@@ -104,9 +115,7 @@ namespace EmployeeManagementServiceConsumer
         {
             var emp = client.SearchById(id);
             if (emp != null)
-            {                
                 return false;
-            }
             else
                 return true;
         }
