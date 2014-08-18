@@ -17,7 +17,7 @@ namespace TestForEmployeeManagementService
         {
             Employee emp1 = new Employee();
             Employee emp2 = new Employee();
-            emp1.EmpId = 15;
+            emp1.EmpId = 20;
             emp1.EmpName = "Arnav";
             clientForCreation.AddEmployee(emp1);
 
@@ -46,5 +46,22 @@ namespace TestForEmployeeManagementService
                 Assert.AreEqual(f.Code.Name, "Duplicate Id");
             }
         }
+
+        [TestMethod]
+        public void AddEmployeeWithNullParameters()
+        {
+            Employee emp1 = new Employee();
+            try
+            {
+                emp1.EmpId = -5;
+                emp1.EmpName = null;
+                clientForCreation.AddEmployee(emp1);
+            }
+            catch (FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name,"ArgumentNullFault");
+            }
+        }
+                
     }
 }
