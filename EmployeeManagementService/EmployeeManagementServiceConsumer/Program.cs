@@ -63,9 +63,9 @@ namespace EmployeeManagementServiceConsumer
                         Console.WriteLine("Enter Employee Id :");
                         emp = clientForRetrieval.SearchById(int.Parse(Console.ReadLine()));
                         if (emp == null)
-                        {
                             Console.WriteLine("Employee with given Id does not exist!!");
-                        }
+                        else                        
+                            DisplayEmployeeDetails(emp);
                         break;
                     }
                     case 4:
@@ -73,9 +73,9 @@ namespace EmployeeManagementServiceConsumer
                         Console.WriteLine("Enter Employee Name :");
                         emp = clientForRetrieval.SearchByName(Console.ReadLine());
                         if (emp == null)
-                        {
                             Console.WriteLine("Employee with given Name does not exist!!");
-                        }
+                        else
+                            DisplayEmployeeDetails(emp);
                         break;
                     }
                     case 5:
@@ -86,6 +86,18 @@ namespace EmployeeManagementServiceConsumer
                 }
             } while (choice != 0);
 
+        }
+
+        private static void DisplayEmployeeDetails(Employee emp)
+        {
+            Console.WriteLine("Employee ID : {0}", emp.EmpId);
+            Console.WriteLine("Employee Name : {0}", emp.EmpName);
+            if (emp.remark != null)
+            {
+                Console.WriteLine("Remarks for employee");
+                Console.WriteLine("Remark Time : {0}", emp.remark.RemarkDateTimeStamp);
+                Console.WriteLine("Remarks:\n {0}", emp.remark.RemarkDescription);
+            }
         }
 
         private static bool IsEmployeeIdUnique(GetDetailsClient client,int id)
