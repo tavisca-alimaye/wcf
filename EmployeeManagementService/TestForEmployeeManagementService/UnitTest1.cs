@@ -89,6 +89,31 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        public void RemarkShoulBeAddedToExistentEmployeeHavingNoRemark()
+        {
+            Employee emp = new Employee();
+            emp.EmpId = 33;
+            emp.EmpName = "Abhijeet";
+            clientForCreation.AddEmployee(emp);
+            clientForCreation.AddRemark(33, "Remarking for first time");
+            emp = clientForRetrieval.SearchById(33);
+            Assert.AreEqual(emp.remark.RemarkDescription,"Remarking for first time");
+        }
+
+        [TestMethod]
+        public void RemarkShoulBeAddedToExistentEmployeeHavingRemarkAlready()
+        {
+            Employee emp = new Employee();
+            emp.EmpId = 31;
+            emp.EmpName = "Abhijeet";
+            clientForCreation.AddEmployee(emp);
+            clientForCreation.AddRemark(31, "Remarking for first time");
+            clientForCreation.AddRemark(31, "Remarking for second time");
+            emp = clientForRetrieval.SearchById(31);
+            Assert.AreEqual(emp.remark.RemarkDescription, "Remarking for first timeRemarking for second time");
+        }
+
+        [TestMethod]
         public void SearchByIdForExistentEmployeeShouldReturnEmployee()
         {
             Employee emp = clientForRetrieval.SearchById(1);
@@ -139,6 +164,19 @@ namespace TestForEmployeeManagementService
 
             var empList = clientForRetrieval.SearchByName("Arnav");
             Assert.AreEqual(empList.Length, 3);
+        }
+
+        [TestMethod]
+        public void GetAllEmployeeListShouldReturnAllEmployees()
+        {
+            var emp = clientForRetrieval.GetAllEmployees();
+            var len = emp.Length;
+            Employee emp1 = new Employee();
+            emp1.EmpId = 2000;
+            emp1.EmpName = "Swapnil";
+            clientForCreation.AddEmployee(emp1);
+            emp = clientForRetrieval.GetAllEmployees();
+            Assert.AreEqual(len + 1, emp.Length);
         }
     }
 }
