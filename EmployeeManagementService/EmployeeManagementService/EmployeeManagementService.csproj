@@ -57,6 +57,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="ValidatiorForEmployeeManagementService">
+      <HintPath>..\ValidatiorForEmployeeManagementService\bin\Debug\ValidatiorForEmployeeManagementService.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeeManagementService.svc" />

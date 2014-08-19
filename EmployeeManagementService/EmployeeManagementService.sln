@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForEmployeeManagementSe
 		{4A3388B4-FC1A-4CCC-9AC1-210747782DF9} = {4A3388B4-FC1A-4CCC-9AC1-210747782DF9}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidatiorForEmployeeManagementService", "ValidatiorForEmployeeManagementService\ValidatiorForEmployeeManagementService.csproj", "{9613CB48-CC2A-4445-827E-E05F7284A409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9613CB48-CC2A-4445-827E-E05F7284A409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9613CB48-CC2A-4445-827E-E05F7284A409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9613CB48-CC2A-4445-827E-E05F7284A409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9613CB48-CC2A-4445-827E-E05F7284A409}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

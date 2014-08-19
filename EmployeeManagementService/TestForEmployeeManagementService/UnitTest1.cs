@@ -8,8 +8,8 @@ namespace TestForEmployeeManagementService
     [TestClass]
     public class UnitTestsForEmployeeManagementService
     {
-        CreateEmployeeClient clientForCreation = new CreateEmployeeClient();
-        GetDetailsClient clientForRetrieval = new GetDetailsClient();
+        CreateEmployeeClient _clientForCreation = new CreateEmployeeClient();
+        GetDetailsClient _clientForRetrieval = new GetDetailsClient();
         //int choice;
         
         [TestMethod]
@@ -19,9 +19,9 @@ namespace TestForEmployeeManagementService
             Employee emp2 = new Employee();
             emp1.EmpId = 20;
             emp1.EmpName = "Arnav";
-            clientForCreation.AddEmployee(emp1);
+            _clientForCreation.AddEmployee(emp1);
 
-            emp2 = clientForRetrieval.SearchById(emp1.EmpId);
+            emp2 = _clientForRetrieval.SearchById(emp1.EmpId);
             Assert.AreEqual(emp1.EmpName, emp2.EmpName);
 
         }
@@ -35,10 +35,10 @@ namespace TestForEmployeeManagementService
             {
                 emp1.EmpId = 1;
                 emp1.EmpName = "Arnav";
-                clientForCreation.AddEmployee(emp1);
+                _clientForCreation.AddEmployee(emp1);
                 emp2.EmpId = 1;
                 emp2.EmpName = "Dhruv";
-                clientForCreation.AddEmployee(emp2);
+                _clientForCreation.AddEmployee(emp2);
             }
             catch (FaultException f)
             {
@@ -54,7 +54,7 @@ namespace TestForEmployeeManagementService
             {
                 emp1.EmpId = -5;
                 emp1.EmpName = null;
-                clientForCreation.AddEmployee(emp1);
+                _clientForCreation.AddEmployee(emp1);
             }
             catch (FaultException f)
             {
@@ -67,7 +67,7 @@ namespace TestForEmployeeManagementService
         {
             try
             {
-                clientForCreation.AddRemark(50, "asdasd");
+                _clientForCreation.AddRemark(50, "asdasd");
             }
             catch (FaultException f)
             {
@@ -80,7 +80,7 @@ namespace TestForEmployeeManagementService
         {
             try
             {
-                clientForCreation.AddRemark(1, null);
+                _clientForCreation.AddRemark(1, null);
             }
             catch (FaultException f)
             {
@@ -94,9 +94,9 @@ namespace TestForEmployeeManagementService
             Employee emp = new Employee();
             emp.EmpId = 41;
             emp.EmpName = "Abhijeet";
-            clientForCreation.AddEmployee(emp);
-            clientForCreation.AddRemark(41, "Remarking for first time");
-            emp = clientForRetrieval.SearchById(41);
+            _clientForCreation.AddEmployee(emp);
+            _clientForCreation.AddRemark(41, "Remarking for first time");
+            emp = _clientForRetrieval.SearchById(41);
             Assert.AreEqual(emp.Remark.RemarkDescription,"Remarking for first time");
         }
 
@@ -106,17 +106,17 @@ namespace TestForEmployeeManagementService
             Employee emp = new Employee();
             emp.EmpId = 43;
             emp.EmpName = "Abhijeet";
-            clientForCreation.AddEmployee(emp);
-            clientForCreation.AddRemark(43, "Remarking for first time");
-            clientForCreation.AddRemark(43, "Remarking for second time");
-            emp = clientForRetrieval.SearchById(43);
+            _clientForCreation.AddEmployee(emp);
+            _clientForCreation.AddRemark(43, "Remarking for first time");
+            _clientForCreation.AddRemark(43, "Remarking for second time");
+            emp = _clientForRetrieval.SearchById(43);
             Assert.AreEqual(emp.Remark.RemarkDescription, "Remarking for first timeRemarking for second time");
         }
 
         [TestMethod]
         public void SearchByIdForExistentEmployeeShouldReturnEmployee()
         {
-            Employee emp = clientForRetrieval.SearchById(1);
+            Employee emp = _clientForRetrieval.SearchById(1);
             Assert.AreEqual(emp.EmpId, 1);
         }
 
@@ -125,7 +125,7 @@ namespace TestForEmployeeManagementService
         {
             try
             {
-                Employee emp = clientForRetrieval.SearchById(-100);
+                Employee emp = _clientForRetrieval.SearchById(-100);
             }
             catch (FaultException f)
             {
@@ -136,7 +136,7 @@ namespace TestForEmployeeManagementService
         [TestMethod]
         public void SearchByNameForExistentUniqueEmployeeShouldReturnEmployee()
         {
-            var emp = clientForRetrieval.SearchByName("Arnav");
+            var emp = _clientForRetrieval.SearchByName("Arnav");
             Assert.AreEqual(emp[0].EmpName, "Arnav");
         }
 
@@ -145,7 +145,7 @@ namespace TestForEmployeeManagementService
         {
             try
             {
-                var emp = clientForRetrieval.SearchByName("ganpati");
+                var emp = _clientForRetrieval.SearchByName("ganpati");
             }
             catch (FaultException f)
             {
@@ -160,22 +160,22 @@ namespace TestForEmployeeManagementService
             emp1.EmpId = 1000;
             emp1.EmpName = "Arnav";
             
-            clientForCreation.AddEmployee(emp1);
+            _clientForCreation.AddEmployee(emp1);
 
-            var empList = clientForRetrieval.SearchByName("Arnav");
+            var empList = _clientForRetrieval.SearchByName("Arnav");
             Assert.AreEqual(empList.Length, 3);
         }
 
         [TestMethod]
         public void GetAllEmployeeListShouldReturnAllEmployees()
         {
-            var emp = clientForRetrieval.GetAllEmployees();
+            var emp = _clientForRetrieval.GetAllEmployees();
             var len = emp.Length;
             Employee emp1 = new Employee();
             emp1.EmpId = 2000;
             emp1.EmpName = "Swapnil";
-            clientForCreation.AddEmployee(emp1);
-            emp = clientForRetrieval.GetAllEmployees();
+            _clientForCreation.AddEmployee(emp1);
+            emp = _clientForRetrieval.GetAllEmployees();
             Assert.AreEqual(len + 1, emp.Length);
         }
     }
