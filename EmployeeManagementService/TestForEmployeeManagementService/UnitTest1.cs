@@ -19,8 +19,8 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        [DeploymentItem(@"D:\Wcf final assignment\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"D:\Wcf final assignment\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "Row", DataAccessMethod.Sequential)]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddEmployeeWithUniqueId", DataAccessMethod.Sequential)]
         public void AddEmployeeWithNewId()
         {
             Employee emp1 = new Employee();
@@ -37,18 +37,16 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddEmployeeWithDuplicateId", DataAccessMethod.Sequential)]
         public void AddEmployeeWithDuplicateIdShouldThrowException()
         {
             Employee emp1 = new Employee();
-            Employee emp2 = new Employee();
             try
             {
-                emp1.EmpId = 1;
-                emp1.EmpName = "Arnav";
+                emp1.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+                emp1.EmpName = testContextInstance.DataRow["EmpName"].ToString();
                 _clientForCreation.AddEmployee(emp1);
-                emp2.EmpId = 1;
-                emp2.EmpName = "Dhruv";
-                _clientForCreation.AddEmployee(emp2);
             }
             catch (FaultException f)
             {

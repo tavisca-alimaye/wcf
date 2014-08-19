@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <EmployeeDB>
-  <Row>
-    <EmpId>22</EmpId>
+  <TestAddEmployeeWithUniqueId>
+    <EmpId>23</EmpId>
     <EmpName>Arnav</EmpName>
-  </Row>
+  </TestAddEmployeeWithUniqueId>
+  <TestAddEmployeeWithDuplicateId>
+    <EmpId>23</EmpId>
+    <EmpName>Dhruv</EmpName>
+  </TestAddEmployeeWithDuplicateId>
 </EmployeeDB>
