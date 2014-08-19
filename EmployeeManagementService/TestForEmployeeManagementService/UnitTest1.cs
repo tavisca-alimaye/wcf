@@ -109,10 +109,10 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        public void SearchByNameForExistentEmployeeShouldReturnEmployee()
+        public void SearchByNameForExistentUniqueEmployeeShouldReturnEmployee()
         {
-            Employee emp = clientForRetrieval.SearchByName("Arnav");
-            Assert.AreEqual(emp.EmpName, "Arnav");
+            var emp = clientForRetrieval.SearchByName("Arnav");
+            Assert.AreEqual(emp[0].EmpName, "Arnav");
         }
 
         [TestMethod]
@@ -120,12 +120,25 @@ namespace TestForEmployeeManagementService
         {
             try
             {
-                Employee emp = clientForRetrieval.SearchByName("ganpati");
+                var emp = clientForRetrieval.SearchByName("ganpati");
             }
             catch (FaultException f)
             {
                 Assert.AreEqual(f.Code.Name, "NoEmployeeWithGivenName");
             }
-        }                
+        }
+
+        [TestMethod]
+        public void SearchByNameForNonUniqueNamesShouldReturnAllEmployeesWithGivenName()
+        {
+            Employee emp1 = new Employee();
+            emp1.EmpId = 1000;
+            emp1.EmpName = "Arnav";
+            
+            clientForCreation.AddEmployee(emp1);
+
+            var empList = clientForRetrieval.SearchByName("Arnav");
+            Assert.AreEqual(empList.Length, 3);
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace EmployeeManagementService
                 }
                 else
                 {
-                    if (emp.EmpId == null || emp.EmpName == null)
+                    if (emp.EmpName == null)
                         throw new ArgumentNullException();
                     empDatabase.Add(emp);
                 }
@@ -78,12 +78,12 @@ namespace EmployeeManagementService
             return empDatabase;
         }
 
-        Employee IGetDetails.GetSelectedEmployee(string name)
+        List<Employee> IGetDetails.GetSelectedEmployee(string name)
         {
             try
             {
-                Employee emp = empDatabase.Find(e => e.EmpName.Equals(name));
-                if (emp == null)
+                var emp = empDatabase.FindAll(e => e.EmpName.Equals(name));
+                if (emp.Count == 0)
                     throw new NullReferenceException();
                 else
                     return emp;
@@ -91,7 +91,7 @@ namespace EmployeeManagementService
             catch (NullReferenceException)
             {
                 throw new FaultException(new FaultReason("Employee with given Name is not present in Database"), new FaultCode("NoEmployeeWithGivenName"));
-            }
+            }            
         }
 
         Employee IGetDetails.GetSelectedEmployee(int id)

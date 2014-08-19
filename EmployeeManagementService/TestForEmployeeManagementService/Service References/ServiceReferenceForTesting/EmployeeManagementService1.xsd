@@ -48,7 +48,7 @@
   <xs:element name="SearchByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="SearchByNameResult" nillable="true" type="q3:Employee" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="SearchByNameResult" nillable="true" type="q3:ArrayOfEmployee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

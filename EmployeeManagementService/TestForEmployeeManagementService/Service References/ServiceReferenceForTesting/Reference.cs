@@ -223,10 +223,10 @@ namespace TestForEmployeeManagementService.ServiceReferenceForTesting {
         System.Threading.Tasks.Task<TestForEmployeeManagementService.ServiceReferenceForTesting.Employee[]> GetAllEmployeesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchByName", ReplyAction="http://tempuri.org/IGetDetails/SearchByNameResponse")]
-        TestForEmployeeManagementService.ServiceReferenceForTesting.Employee SearchByName(string name);
+        TestForEmployeeManagementService.ServiceReferenceForTesting.Employee[] SearchByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchByName", ReplyAction="http://tempuri.org/IGetDetails/SearchByNameResponse")]
-        System.Threading.Tasks.Task<TestForEmployeeManagementService.ServiceReferenceForTesting.Employee> SearchByNameAsync(string name);
+        System.Threading.Tasks.Task<TestForEmployeeManagementService.ServiceReferenceForTesting.Employee[]> SearchByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetDetails/SearchById", ReplyAction="http://tempuri.org/IGetDetails/SearchByIdResponse")]
         TestForEmployeeManagementService.ServiceReferenceForTesting.Employee SearchById(int id);
@@ -270,11 +270,11 @@ namespace TestForEmployeeManagementService.ServiceReferenceForTesting {
             return base.Channel.GetAllEmployeesAsync();
         }
         
-        public TestForEmployeeManagementService.ServiceReferenceForTesting.Employee SearchByName(string name) {
+        public TestForEmployeeManagementService.ServiceReferenceForTesting.Employee[] SearchByName(string name) {
             return base.Channel.SearchByName(name);
         }
         
-        public System.Threading.Tasks.Task<TestForEmployeeManagementService.ServiceReferenceForTesting.Employee> SearchByNameAsync(string name) {
+        public System.Threading.Tasks.Task<TestForEmployeeManagementService.ServiceReferenceForTesting.Employee[]> SearchByNameAsync(string name) {
             return base.Channel.SearchByNameAsync(name);
         }
         
