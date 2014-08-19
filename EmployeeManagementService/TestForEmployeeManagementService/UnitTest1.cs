@@ -11,14 +11,24 @@ namespace TestForEmployeeManagementService
         CreateEmployeeClient _clientForCreation = new CreateEmployeeClient();
         GetDetailsClient _clientForRetrieval = new GetDetailsClient();
         //int choice;
-        
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
         [TestMethod]
+        [DeploymentItem(@"D:\Wcf final assignment\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"D:\Wcf final assignment\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "Row", DataAccessMethod.Sequential)]
         public void AddEmployeeWithNewId()
         {
             Employee emp1 = new Employee();
             Employee emp2 = new Employee();
-            emp1.EmpId = 20;
-            emp1.EmpName = "Arnav";
+
+            emp1.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            emp1.EmpName = testContextInstance.DataRow["EmpName"].ToString();
+            //emp1.EmpName = "Arnav";
             _clientForCreation.AddEmployee(emp1);
 
             emp2 = _clientForRetrieval.SearchById(emp1.EmpId);
