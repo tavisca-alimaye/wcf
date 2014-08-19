@@ -52,13 +52,13 @@ namespace TestForEmployeeManagementService
             Employee emp1 = new Employee();
             try
             {
-                emp1.EmpId = -5;
+                emp1.EmpId = 15;
                 emp1.EmpName = null;
                 _clientForCreation.AddEmployee(emp1);
             }
             catch (FaultException f)
             {
-                Assert.AreEqual(f.Code.Name,"ArgumentNullFault");
+                Assert.AreEqual(f.Code.Name, "EmployeeNameIsNull");
             }
         }
 
@@ -156,14 +156,16 @@ namespace TestForEmployeeManagementService
         [TestMethod]
         public void SearchByNameForNonUniqueNamesShouldReturnAllEmployeesWithGivenName()
         {
+            var empList = _clientForRetrieval.SearchByName("Arnav");
+            var len = empList.Length;
             Employee emp1 = new Employee();
-            emp1.EmpId = 1000;
+            emp1.EmpId = 1001;
             emp1.EmpName = "Arnav";
             
             _clientForCreation.AddEmployee(emp1);
 
-            var empList = _clientForRetrieval.SearchByName("Arnav");
-            Assert.AreEqual(empList.Length, 3);
+            empList = _clientForRetrieval.SearchByName("Arnav");
+            Assert.AreEqual(empList.Length, len + 1);
         }
 
         [TestMethod]
@@ -177,6 +179,36 @@ namespace TestForEmployeeManagementService
             _clientForCreation.AddEmployee(emp1);
             emp = _clientForRetrieval.GetAllEmployees();
             Assert.AreEqual(len + 1, emp.Length);
+        }
+
+        [TestMethod]
+        public void AddingEmployeeWithNegativeIdShouldThrowException()
+        {
+            try
+            {
+                Employee emp = new Employee();
+                emp.EmpId = -7;
+                emp.EmpName = "Akshay";
+            }
+            catch(FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name, "Id not valid");
+            }
+        }
+
+        [TestMethod]
+        public void AddingEmployeeNameWithAlphaNumericNameShouldThrowException()
+        {
+            try
+            {
+                Employee emp = new Employee();
+                emp.EmpId = 117;
+                emp.EmpName = "Arnav21%^";
+            }
+            catch (FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name, "Name must contain letters only");
+            }
         }
     }
 }

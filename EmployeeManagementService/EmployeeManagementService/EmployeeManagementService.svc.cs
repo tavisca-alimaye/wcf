@@ -25,18 +25,12 @@ namespace EmployeeManagementService
                 }
                 else
                 {
-                    if (emp.EmpName == null)
-                        throw new ArgumentNullException();
                     empDatabase.Add(emp);
                 }
             }
             catch (FaultException)
             {
                 throw new FaultException(new FaultReason("Given Id already exists!!!"), new FaultCode("Duplicate Id"));
-            }
-            catch (ArgumentNullException)
-            {
-                throw new FaultException(new FaultReason("Argument cannot be null!!!"), new FaultCode("ArgumentNullFault"));
             }
             
         }

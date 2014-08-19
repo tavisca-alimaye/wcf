@@ -12,7 +12,6 @@ namespace EmployeeManagementService
     [ServiceContract]
     public interface ICreateEmployee
     {
-
         [OperationContract]
         void AddEmployee(Employee emp);
 

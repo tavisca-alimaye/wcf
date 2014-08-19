@@ -9,6 +9,7 @@ using System.ServiceModel.Configuration;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using EmployeeManagementService;
+using System.Text.RegularExpressions;
 
 namespace ValidatiorForEmployeeManagementService
 {
@@ -17,7 +18,6 @@ namespace ValidatiorForEmployeeManagementService
 
         public void AfterCall(string operationName, object[] outputs, object returnValue, object correlationState)
         {
-            throw new NotImplementedException();
         }
 
         public object BeforeCall(string operationName, object[] inputs)
@@ -25,9 +25,14 @@ namespace ValidatiorForEmployeeManagementService
             if (operationName == "AddEmployee")
             {
                 Employee ip = (Employee)inputs[0];
-                
-                if (ip.EmpName == null)
-                    throw new FaultException(new FaultReason("Passed parameter is not of type Employee"), new FaultCode("Parameter not valid"));
+                if (ip.EmpId < 0)
+                    throw new FaultException(new FaultReason("Employee Id must be greater than 0"), new FaultCode("Id not valid"));
+                else if (ip.EmpName == null)
+                    throw new FaultException(new FaultReason("Employee name must not be null"), new FaultCode("EmployeeNameIsNull"));
+                else if (!(Regex.IsMatch(ip.EmpName, @"^[a-zA-Z]+$")))
+                    throw new FaultException(new FaultReason("Employee name must contain only letters"), new FaultCode("Name must contain letters only"));
+                else
+                    return null;
             }
             return null;
         }
