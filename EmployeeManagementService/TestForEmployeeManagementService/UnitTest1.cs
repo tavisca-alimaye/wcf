@@ -27,7 +27,7 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        public void AddEmployeeWithDuplicateId()
+        public void AddEmployeeWithDuplicateIdShouldThrowException()
         {
             Employee emp1 = new Employee();
             Employee emp2 = new Employee();
@@ -47,7 +47,7 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        public void AddEmployeeWithNullParameters()
+        public void AddEmployeeWithNullParametersShouldThrowException()
         {
             Employee emp1 = new Employee();
             try
@@ -76,7 +76,7 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        public void RemarkShouldNotBeNullException()
+        public void RemarkShouldNotBeNullExceptionShouldBeThrown()
         {
             try
             {
@@ -87,6 +87,45 @@ namespace TestForEmployeeManagementService
                 Assert.AreEqual(f.Code.Name, "RemarkIsNull");
             }
         }
-                
+
+        [TestMethod]
+        public void SearchByIdForExistentEmployeeShouldReturnEmployee()
+        {
+            Employee emp = clientForRetrieval.SearchById(1);
+            Assert.AreEqual(emp.EmpId, 1);
+        }
+
+        [TestMethod]
+        public void SearchByIdForNonExistentEmployeeShouldGiveException()
+        {
+            try
+            {
+                Employee emp = clientForRetrieval.SearchById(-100);
+            }
+            catch (FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name, "NoEmployeeWithGivenId");
+            }
+        }
+
+        [TestMethod]
+        public void SearchByNameForExistentEmployeeShouldReturnEmployee()
+        {
+            Employee emp = clientForRetrieval.SearchByName("Arnav");
+            Assert.AreEqual(emp.EmpName, "Arnav");
+        }
+
+        [TestMethod]
+        public void SearchByNameForNonExistentEmployeeShouldGiveException()
+        {
+            try
+            {
+                Employee emp = clientForRetrieval.SearchByName("ganpati");
+            }
+            catch (FaultException f)
+            {
+                Assert.AreEqual(f.Code.Name, "NoEmployeeWithGivenName");
+            }
+        }                
     }
 }

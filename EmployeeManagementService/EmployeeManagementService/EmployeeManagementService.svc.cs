@@ -80,12 +80,34 @@ namespace EmployeeManagementService
 
         Employee IGetDetails.GetSelectedEmployee(string name)
         {
-            return (empDatabase.Find(e => e.EmpName.Equals(name)));
+            try
+            {
+                Employee emp = empDatabase.Find(e => e.EmpName.Equals(name));
+                if (emp == null)
+                    throw new NullReferenceException();
+                else
+                    return emp;
+            }
+            catch (NullReferenceException)
+            {
+                throw new FaultException(new FaultReason("Employee with given Name is not present in Database"), new FaultCode("NoEmployeeWithGivenName"));
+            }
         }
 
         Employee IGetDetails.GetSelectedEmployee(int id)
         {
-            return (empDatabase.Find(e => e.EmpId.Equals(id)));
+            try
+            {
+                Employee emp = empDatabase.Find(e => e.EmpId.Equals(id));
+                if (emp == null)
+                    throw new NullReferenceException();
+                else
+                    return emp;
+            }
+            catch (NullReferenceException)
+            {
+                throw new FaultException(new FaultReason("Employee with given Id is not present in Database"), new FaultCode("NoEmployeeWithGivenId"));
+            }
         }
     }
 }
