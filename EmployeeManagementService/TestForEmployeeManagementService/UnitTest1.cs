@@ -55,13 +55,15 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        public void AddEmployeeWithNullParametersShouldThrowException()
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddEmployeeWithNullParameter", DataAccessMethod.Sequential)]
+        public void AddEmployeeWithNullParameterShouldThrowException()
         {
             Employee emp1 = new Employee();
             try
             {
-                emp1.EmpId = 15;
-                emp1.EmpName = null;
+                emp1.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+                emp1.EmpName = null;            //was unable to put null value in datasource...so hardcoded it
                 _clientForCreation.AddEmployee(emp1);
             }
             catch (FaultException f)
@@ -71,11 +73,15 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddRemarkToNonExistentEmployee", DataAccessMethod.Sequential)]
         public void AddRemarkToNonExistentEmployeeShouldThrowException()
         {
+            int id = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            string remark = testContextInstance.DataRow["EmpRemark"].ToString();
             try
             {
-                _clientForCreation.AddRemark(50, "asdasd");
+                _clientForCreation.AddRemark(id, remark);
             }
             catch (FaultException f)
             {
@@ -84,11 +90,15 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestRemarkShouldNotBeNullException", DataAccessMethod.Sequential)]
         public void RemarkShouldNotBeNullExceptionShouldBeThrown()
         {
+            int id = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            string remark = null;
             try
             {
-                _clientForCreation.AddRemark(1, null);
+                _clientForCreation.AddRemark(id, remark);
             }
             catch (FaultException f)
             {
@@ -97,27 +107,34 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddingOnlyOneRemark", DataAccessMethod.Sequential)]
         public void RemarkShoulBeAddedToExistentEmployeeHavingNoRemark()
         {
             Employee emp = new Employee();
-            emp.EmpId = 41;
-            emp.EmpName = "Abhijeet";
+            emp.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            emp.EmpName = testContextInstance.DataRow["EmpName"].ToString();
+            string remark = testContextInstance.DataRow["EmpRemark"].ToString();
             _clientForCreation.AddEmployee(emp);
-            _clientForCreation.AddRemark(41, "Remarking for first time");
-            emp = _clientForRetrieval.SearchById(41);
+            _clientForCreation.AddRemark(emp.EmpId, remark);
+            emp = _clientForRetrieval.SearchById(emp.EmpId);
             Assert.AreEqual(emp.Remark.RemarkDescription,"Remarking for first time");
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddingMoreThanOneRemark", DataAccessMethod.Sequential)]
         public void RemarkShoulBeAddedToExistentEmployeeHavingRemarkAlready()
         {
             Employee emp = new Employee();
-            emp.EmpId = 43;
-            emp.EmpName = "Abhijeet";
+            emp.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            emp.EmpName = testContextInstance.DataRow["EmpName"].ToString();
+            string remark1 = testContextInstance.DataRow["EmpRemark1"].ToString();
+            string remark2 = testContextInstance.DataRow["EmpRemark2"].ToString();
             _clientForCreation.AddEmployee(emp);
-            _clientForCreation.AddRemark(43, "Remarking for first time");
-            _clientForCreation.AddRemark(43, "Remarking for second time");
-            emp = _clientForRetrieval.SearchById(43);
+            _clientForCreation.AddRemark(emp.EmpId, remark1);
+            _clientForCreation.AddRemark(emp.EmpId, remark2);
+            emp = _clientForRetrieval.SearchById(emp.EmpId);
             Assert.AreEqual(emp.Remark.RemarkDescription, "Remarking for first timeRemarking for second time");
         }
 
@@ -162,13 +179,15 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestSearchByNameForNonUniqueNames", DataAccessMethod.Sequential)]
         public void SearchByNameForNonUniqueNamesShouldReturnAllEmployeesWithGivenName()
         {
             var empList = _clientForRetrieval.SearchByName("Arnav");
             var len = empList.Length;
             Employee emp1 = new Employee();
-            emp1.EmpId = 1001;
-            emp1.EmpName = "Arnav";
+            emp1.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            emp1.EmpName = testContextInstance.DataRow["EmpName"].ToString();
             
             _clientForCreation.AddEmployee(emp1);
 
@@ -177,26 +196,30 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestGetAllEmployees", DataAccessMethod.Sequential)]
         public void GetAllEmployeeListShouldReturnAllEmployees()
         {
             var emp = _clientForRetrieval.GetAllEmployees();
             var len = emp.Length;
             Employee emp1 = new Employee();
-            emp1.EmpId = 2000;
-            emp1.EmpName = "Swapnil";
+            emp1.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+            emp1.EmpName = testContextInstance.DataRow["EmpName"].ToString();
             _clientForCreation.AddEmployee(emp1);
             emp = _clientForRetrieval.GetAllEmployees();
             Assert.AreEqual(len + 1, emp.Length);
         }
 
         [TestMethod]
-        public void AddingEmployeeWithNegativeIdShouldThrowException()
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddingEmployeeWithNegativeId", DataAccessMethod.Sequential)]
+        public void PassingEmployeeWithNegativeIdShouldThrowException()
         {
             try
             {
                 Employee emp = new Employee();
-                emp.EmpId = -7;
-                emp.EmpName = "Akshay";
+                emp.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+                emp.EmpName = testContextInstance.DataRow["EmpName"].ToString();
             }
             catch(FaultException f)
             {
@@ -205,13 +228,15 @@ namespace TestForEmployeeManagementService
         }
 
         [TestMethod]
-        public void AddingEmployeeNameWithAlphaNumericNameShouldThrowException()
+        [DeploymentItem(@"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"E:\GIT Repos\wcf\EmployeeManagementService\EmployeeManagementService\DataSource.xml", "TestAddingEmployeeWithInvalidName", DataAccessMethod.Sequential)]
+        public void PassingEmployeeNameWithAlphaNumericNameShouldThrowException()
         {
             try
             {
                 Employee emp = new Employee();
-                emp.EmpId = 117;
-                emp.EmpName = "Arnav21%^";
+                emp.EmpId = Int32.Parse(testContextInstance.DataRow["EmpId"].ToString());
+                emp.EmpName = testContextInstance.DataRow["EmpName"].ToString();
             }
             catch (FaultException f)
             {
