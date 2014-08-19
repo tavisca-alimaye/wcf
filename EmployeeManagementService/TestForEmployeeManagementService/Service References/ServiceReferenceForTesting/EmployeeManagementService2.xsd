@@ -4,7 +4,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="EmpId" type="xs:int" />
       <xs:element minOccurs="0" name="EmpName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="remark" nillable="true" type="tns:Remarks" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="tns:Remarks" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Employee" nillable="true" type="tns:Employee" />

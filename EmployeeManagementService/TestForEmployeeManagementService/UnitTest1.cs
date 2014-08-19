@@ -92,25 +92,25 @@ namespace TestForEmployeeManagementService
         public void RemarkShoulBeAddedToExistentEmployeeHavingNoRemark()
         {
             Employee emp = new Employee();
-            emp.EmpId = 33;
+            emp.EmpId = 41;
             emp.EmpName = "Abhijeet";
             clientForCreation.AddEmployee(emp);
-            clientForCreation.AddRemark(33, "Remarking for first time");
-            emp = clientForRetrieval.SearchById(33);
-            Assert.AreEqual(emp.remark.RemarkDescription,"Remarking for first time");
+            clientForCreation.AddRemark(41, "Remarking for first time");
+            emp = clientForRetrieval.SearchById(41);
+            Assert.AreEqual(emp.Remark.RemarkDescription,"Remarking for first time");
         }
 
         [TestMethod]
         public void RemarkShoulBeAddedToExistentEmployeeHavingRemarkAlready()
         {
             Employee emp = new Employee();
-            emp.EmpId = 31;
+            emp.EmpId = 43;
             emp.EmpName = "Abhijeet";
             clientForCreation.AddEmployee(emp);
-            clientForCreation.AddRemark(31, "Remarking for first time");
-            clientForCreation.AddRemark(31, "Remarking for second time");
-            emp = clientForRetrieval.SearchById(31);
-            Assert.AreEqual(emp.remark.RemarkDescription, "Remarking for first timeRemarking for second time");
+            clientForCreation.AddRemark(43, "Remarking for first time");
+            clientForCreation.AddRemark(43, "Remarking for second time");
+            emp = clientForRetrieval.SearchById(43);
+            Assert.AreEqual(emp.Remark.RemarkDescription, "Remarking for first timeRemarking for second time");
         }
 
         [TestMethod]

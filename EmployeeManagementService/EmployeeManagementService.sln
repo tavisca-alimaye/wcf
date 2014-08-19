@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementService", "EmployeeManagementService\EmployeeManagementService.csproj", "{4A3388B4-FC1A-4CCC-9AC1-210747782DF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementServiceConsumer", "EmployeeManagementServiceConsumer\EmployeeManagementServiceConsumer.csproj", "{08283239-34D8-4DFF-B116-54A564E92FA6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4A3388B4-FC1A-4CCC-9AC1-210747782DF9} = {4A3388B4-FC1A-4CCC-9AC1-210747782DF9}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForEmployeeManagementService", "TestForEmployeeManagementService\TestForEmployeeManagementService.csproj", "{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4A3388B4-FC1A-4CCC-9AC1-210747782DF9} = {4A3388B4-FC1A-4CCC-9AC1-210747782DF9}
@@ -23,10 +18,6 @@ Global
 		{4A3388B4-FC1A-4CCC-9AC1-210747782DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A3388B4-FC1A-4CCC-9AC1-210747782DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A3388B4-FC1A-4CCC-9AC1-210747782DF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08283239-34D8-4DFF-B116-54A564E92FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08283239-34D8-4DFF-B116-54A564E92FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08283239-34D8-4DFF-B116-54A564E92FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08283239-34D8-4DFF-B116-54A564E92FA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAA17E4D-A633-4CCE-BC1F-08418C9C3311}.Release|Any CPU.ActiveCfg = Release|Any CPU

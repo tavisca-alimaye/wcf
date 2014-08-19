@@ -50,16 +50,16 @@ namespace EmployeeManagementService
                     throw new ArgumentNullException();
                 if (employee != null)
                 {
-                    if (employee.remark == null)
+                    if (employee.Remark == null)
                     {
-                        employee.remark = new Remarks();
+                        employee.Remark = new Remarks();
                         //employee.remark.RemarkDateTimeStamp = DateTime.Now;
-                        employee.remark.RemarkDescription = comments;
+                        employee.Remark.RemarkDescription = comments;
                     }
                     else
                     {
-                        employee.remark.RemarkDateTimeStamp = DateTime.Now;
-                        employee.remark.RemarkDescription += comments;
+                        employee.Remark.RemarkDateTimeStamp = DateTime.Now;
+                        employee.Remark.RemarkDescription += comments;
                     }
                 }
                 else

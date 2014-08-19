@@ -32,13 +32,13 @@ namespace EmployeeManagementService
         public string EmpName { get; set; }
 
         [DataMember]
-        public Remarks remark;
+        public Remarks Remark{get;set;}
 
         public Employee()
         {
             EmpId = -1;
             EmpName = null;
-            remark = new Remarks();
+            Remark = new Remarks();
         }
     }
 

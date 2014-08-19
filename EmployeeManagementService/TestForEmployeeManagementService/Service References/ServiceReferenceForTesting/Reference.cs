@@ -29,7 +29,7 @@ namespace TestForEmployeeManagementService.ServiceReferenceForTesting {
         private string EmpNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestForEmployeeManagementService.ServiceReferenceForTesting.Remarks remarkField;
+        private TestForEmployeeManagementService.ServiceReferenceForTesting.Remarks RemarkField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -68,14 +68,14 @@ namespace TestForEmployeeManagementService.ServiceReferenceForTesting {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestForEmployeeManagementService.ServiceReferenceForTesting.Remarks remark {
+        public TestForEmployeeManagementService.ServiceReferenceForTesting.Remarks Remark {
             get {
-                return this.remarkField;
+                return this.RemarkField;
             }
             set {
-                if ((object.ReferenceEquals(this.remarkField, value) != true)) {
-                    this.remarkField = value;
-                    this.RaisePropertyChanged("remark");
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
                 }
             }
         }
