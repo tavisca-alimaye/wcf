@@ -30,7 +30,7 @@
     <EmpRemark>Remarking for first time</EmpRemark>
   </TestAddingOnlyOneRemark>
   <TestAddingMoreThanOneRemark>
-    <EmpId>41</EmpId>
+    <EmpId>47</EmpId>
     <EmpName>Abhijeet</EmpName>
     <EmpRemark1>Remarking for first time</EmpRemark1>
     <EmpRemark2>Remarking for second time</EmpRemark2>
@@ -51,4 +51,8 @@
     <EmpId>113</EmpId>
     <EmpName>Arnav12#$</EmpName>
   </TestAddingEmployeeWithInvalidName>
+  <TestSearchingForExistentEmployee>
+    <EmpId>213</EmpId>
+    <EmpName>Vaishnavi</EmpName>
+  </TestSearchingForExistentEmployee>
 </EmployeeDB>
